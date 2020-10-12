@@ -1,0 +1,17 @@
+<div class="myContainer">
+    <h1>Welcome to my container</h1>
+    <h3>Begin...</h3>
+    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very like for the process to stop... doing what it's doing so what can the transistor do well...it can build a brigde</p>
+
+    <button (click)="open(myModal)">Begin</button>
+</div>
+
+<ng-template #myModal let-modal>
+    <div class="modal-header">
+
+    </div>
+    <div class="modal-body">
+        <app-login></app-login>
+    </div>
+    <div class="modal-footer"></div>
+</ng-template>

@@ -20,6 +20,7 @@ export class HomeComponent implements OnInit {
     },(reason) =>{
       this.closeResult = `Dismissed with: ${this.getDismissedReason(reason)}`;
     })
+    //commet
   }
 
   private getDismissedReason(reason){

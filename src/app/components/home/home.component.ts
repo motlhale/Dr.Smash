@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+import { LoginComponent } from '../login/login.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,19 +10,25 @@ import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 })
 export class HomeComponent implements OnInit {
 
+  @ViewChild(LoginComponent,{static:false})
+
+  loading = false;
   closeResult:string;
-  constructor(private modalService: NgbModal) { }
+  constructor(
+    private modalService: NgbModal,
+    private router: Router) { 
+      
+    }
 
   ngOnInit(): void {
   }
 
   open(content){
-    this.modalService.open(content).result.then((result)=>{
+    this.modalService.open(content,{ariaLabelledBy: 'modal-basic-title'}).result.then((result)=>{
       this.closeResult = `Closed with: ${result}`;
     },(reason) =>{
       this.closeResult = `Dismissed with: ${this.getDismissedReason(reason)}`;
-    })
-    //commet
+    });
   }
 
   private getDismissedReason(reason){
@@ -28,7 +36,7 @@ export class HomeComponent implements OnInit {
       return 'by pressing Escape';
     }
     else if(reason == ModalDismissReasons.BACKDROP_CLICK){
-      return 'by clickingon the backdrop';
+      return 'by clicking on the backdrop';
     }else{
       return `with: ${reason}`;
     }

@@ -1,17 +1,25 @@
 <div class="myContainer">
     <h1>Welcome to my container</h1>
     <h3>Begin...</h3>
-    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very like for the process to stop... doing what it's doing so what can the transistor do well...it can build a brigde</p>
+    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very like for the process to stop... doing what it's doing so what can the transistor do well...it can build a bridge</p>
 
-    <button (click)="open(myModal)">Begin</button>
+    <div>
+        <button class="btn btn-primary" (click)="open(myModal)">Begin</button>
+    </div>
 </div>
 
 <ng-template #myModal let-modal>
     <div class="modal-header">
-
+        <h4 class="modal-title" id="modal-basic-title">Bootstrap Modal</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">×</span>
+          </button>
     </div>
     <div class="modal-body">
-        <app-login></app-login>
+        <app-login #myLogin></app-login>
     </div>
-    <div class="modal-footer"></div>
+    <!--<div class="modal-footer">
+        <button [disabled]="loading" type="button" class="btn btn-success" (click)="onLogin(myLogin)">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Login</button>
+    </div>-->
 </ng-template>

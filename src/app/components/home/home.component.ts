@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   @ViewChild(LoginComponent,{static:false})
-
+  private toLogin: LoginComponent;
   loading = false;
   closeResult:string;
   constructor(
@@ -39,6 +39,18 @@ export class HomeComponent implements OnInit {
       return 'by clicking on the backdrop';
     }else{
       return `with: ${reason}`;
+    }
+  }
+
+  onLogin(content){
+    if(this.toLogin == null || this.toLogin == undefined){
+      this.toLogin = content;
+    }
+
+    var status = this.toLogin.onSubmit();
+    console.log('calling from home component',status)
+    if(this.toLogin.status){
+      this.modalService.dismissAll("successful login")
     }
   }
 }

@@ -12,6 +12,7 @@ import { userService } from '../../services/userService';
 export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
+  public status:boolean;
 
   constructor( 
     private frmBuild:FormBuilder,
@@ -20,6 +21,7 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeFrom();
+    this.status = false;
   }
 
   initializeFrom(){
@@ -31,17 +33,18 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls}
 
-  onSubmit() {
-    var status = false;
-    this.userService.getUser(this.f.id.value).subscribe((data) =>{
+  async onSubmit() {
+    var t = await this.userService.getUser(this.f.id.value).subscribe((data) =>{
       if(data.data.email == this.f.email.value){
-        status = true;
+        this.status = true;
       }
-      localStorage.setItem("isLoggedIn",JSON.stringify(status));
-      console.log("status",status);
+      //localStorage.setItem("isLoggedIn",JSON.stringify(status));
+      return this.status;
+      console.log("calling from login component",this.status);
     },(error) =>{
       localStorage.setItem("isLoggedIn",JSON.stringify(status));
     });
     
+    console.log(this.status);
   }
 }

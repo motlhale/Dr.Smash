@@ -1,0 +1,13 @@
+<div class="flex-container">
+    <div *ngFor="let pst of posts">
+        <div>
+            <label>Title :{{pst.title}}</label> <br/>
+            <textarea rows="4" cols="90"> {{pst.body}}</textarea><br/>
+            <label> Created: {{pst.created_at}} </label>
+            <label> Updated: {{pst.updated_at}} </label>
+        </div>
+    </div>
+</div>
+<!--<div class="btn-group">
+    <button class="btn btn-primary">Prev</button><label> {{index}} </label><button class="btn btn-primary">Next</button>
+</div>-->

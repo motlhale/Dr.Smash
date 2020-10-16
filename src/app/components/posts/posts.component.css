@@ -1,3 +1,7 @@
+.btn-group{
+    align-content: center;
+}
+
 .flex-container {
     display: flex;
     background-color: dodgerblue;
@@ -9,8 +13,4 @@
  padding: 30px;
  margin: 20px;
  border-radius: 10px;
-}
-
-.btn-group{
-    align-content: center;
 }

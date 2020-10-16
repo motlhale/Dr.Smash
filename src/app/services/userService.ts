@@ -14,8 +14,8 @@ export class userService{
         this.myheaders.append("Accept","application/json")
     }
 
-    getUsers(){
-        return this.httpClient.get<any>(`${AppSettings.BaseURL}/users`,{headers:this.myheaders})
+    getUsers(index){
+        return this.httpClient.get<any>(`${AppSettings.BaseURL}/users?page=${index}`,{headers:this.myheaders})
         .pipe( map((response) => {return response}));
     }
 

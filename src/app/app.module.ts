@@ -6,13 +6,16 @@ import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
+import { userService } from './services/userService';
+import { postService } from './services/postService';
+
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { PostsComponent } from './components/posts/posts.component';
 
-import { userService } from './services/userService';
 
 @NgModule({
   declarations: [
@@ -20,7 +23,8 @@ import { userService } from './services/userService';
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    MenuComponent
+    MenuComponent,
+    PostsComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +34,8 @@ import { userService } from './services/userService';
     HttpClientModule
   ],
   providers: [
-    userService
+    userService,
+    postService
   ],
   bootstrap: [AppComponent]
 })

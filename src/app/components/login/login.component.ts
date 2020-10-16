@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormGroup,FormBuilder } from '@angular/forms';
-import { Router } from '@angular/router';
 import { userService } from '../../services/userService';
 
 @Component({
@@ -12,16 +11,16 @@ import { userService } from '../../services/userService';
 export class LoginComponent implements OnInit {
 
   loginForm:FormGroup;
-  public status:boolean;
+  user:any;
+  loading:boolean = false;
 
+  @Output() loginFunction:EventEmitter<any> = new EventEmitter()
   constructor( 
     private frmBuild:FormBuilder,
-    private userService: userService,
-    private router: Router) { }
+    private userService: userService) { }
 
   ngOnInit(): void {
     this.initializeFrom();
-    this.status = false;
   }
 
   initializeFrom(){
@@ -33,18 +32,25 @@ export class LoginComponent implements OnInit {
 
   get f() { return this.loginForm.controls}
 
-  async onSubmit() {
-    var t = await this.userService.getUser(this.f.id.value).subscribe((data) =>{
-      if(data.data.email == this.f.email.value){
-        this.status = true;
+  onLogin(){
+    this.loading = true;
+    if(this.loginForm.invalid){
+      this.loading = false;
+      return;
+    }
+
+    this.userService.getUser(this.f.id.value).subscribe(
+      (data) =>{
+        if(this.f.email.value == data.data.email){
+          this.loading = false;
+          this.user = JSON.stringify(data.data);
+          localStorage.setItem('user',this.user);
+          this.loginFunction.emit(this.user);
+        }
+        this.loading = false;
+      }, (error) =>{
+        this.loading = false;
       }
-      //localStorage.setItem("isLoggedIn",JSON.stringify(status));
-      return this.status;
-      console.log("calling from login component",this.status);
-    },(error) =>{
-      localStorage.setItem("isLoggedIn",JSON.stringify(status));
-    });
-    
-    console.log(this.status);
+    )
   }
 }

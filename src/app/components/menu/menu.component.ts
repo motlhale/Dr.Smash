@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { userService } from '../../services/userService';
-import { FormGroup,FormBuilder } from '@angular/forms';
+import { postService } from '../../services/postService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,16 +10,54 @@ import { FormGroup,FormBuilder } from '@angular/forms';
 })
 export class MenuComponent implements OnInit {
 
-  user:any
-  userForm:FormGroup;
+  user:any;
+  users:any;
+  index:number;
+  //userForm:FormGroup;
   constructor(
-    private userService:userService
+    private userService:userService,
+    private postService:postService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(
+    this.index = 1;
+    this.user = JSON.parse(localStorage.getItem("user"));
+    this.userService.getUsers(this.index).subscribe(
       (data) =>{
-        this.user = data.data
+        this.users = data.data
+      },(error) =>{
+
+      }
+    )
+  }
+  
+  getUserPosts(index){
+    this.postService.getUserPost(index).subscribe(
+      (data) =>{
+        localStorage.setItem("posts",JSON.stringify(data.data));
+        this.router.navigate(['/posts'])
+      },(error) =>{
+
+      }
+    )
+  }
+
+  prev(){
+    this.index--;
+    this.userService.getUsers(this.index).subscribe(
+      (data) => {
+        this.users = data.data;
+      },(error) =>{
+
+      }
+    )
+  }
+  next(){
+    this.index++;
+    this.userService.getUsers(this.index).subscribe(
+      (data) => {
+        this.users = data.data;
       },(error) =>{
 
       }

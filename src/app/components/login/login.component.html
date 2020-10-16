@@ -9,6 +9,8 @@
         <input type="text" formControlName="email" placeholder="required"/>
     </div>
     <div>
-        <button type="button" class="btn btn-success" (click)="onSubmit()">Login</button>
+        <button [disabled]="loading" type="button" class="btn btn-success" (click)="onLogin()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Login
+        </button>
     </div>
 </form>

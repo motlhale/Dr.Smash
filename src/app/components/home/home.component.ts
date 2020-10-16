@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
+import { RegisterComponent } from '../register/register.component';
+import { userService } from '../../services/userService';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,9 +13,14 @@ import { Router } from '@angular/router';
 export class HomeComponent implements OnInit {
 
   @ViewChild(LoginComponent,{static:false})
-  private toLogin: LoginComponent;
+  private login:LoginComponent;
+
+  @ViewChild(RegisterComponent,{static:false})
+  private register:RegisterComponent
+
   loading = false;
   closeResult:string;
+
   constructor(
     private modalService: NgbModal,
     private router: Router) { 
@@ -42,15 +49,14 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  onLogin(content){
-    if(this.toLogin == null || this.toLogin == undefined){
-      this.toLogin = content;
-    }
-
-    var status = this.toLogin.onSubmit();
-    console.log('calling from home component',status)
-    if(this.toLogin.status){
-      this.modalService.dismissAll("successful login")
-    }
+  loginFunction(data){
+    this.modalService.dismissAll("closed");
+    this.router.navigate(['/menu']);
   }
+
+  registerFunction(data){
+    this.modalService.dismissAll("closed");
+    this.router.navigate(['/menu']);
+  }
+
 }

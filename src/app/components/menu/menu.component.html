@@ -1,28 +1,67 @@
 <div>
-    <form [formGroup]="userForm">
+    <div class="container">
+        <h2>Logged in User</h2>
         <div>
-            <label>Name:</label><br/>
-            <input type="text" disabled formControlName="name"/>
+            <label>Name:</label>
+            <input type="text" disabled value="{{user.name}}"/>
         </div>
         <div>
-            <label>Email:</label><br/>
-            <input type="text" disabled formControlName="email"/>
+            <label>Email:</label>
+            <input type="text" disabled value="{{user.email}}"/>
         </div>
         <div>
-            <label>Gender:</label><br/>
-            <input type="text" disabled formControlName="gender"/>
+            <label>Gender:</label>
+            <input type="text" disabled value="{{user.gender}}"/>
         </div>
         <div>
-            <label>Status:</label><br/>
-            <input type="text" disabled formControlName="status"/>
+            <label>Status:</label>
+            <input type="text" disabled value="{{user.status}}"/>
         </div>
         <div>
-            <label>Created:</label><br/>
-            <input type="text" disabled formControlName="created_at"/>
+            <label>Created:</label>
+            <input type="text" disabled value="{{user.created_at.toString()}}"/>
         </div>
         <div>
-            <label>Updated:</label><br/>
-            <input type="text" disabled formControlName="updates_at"/>
+            <label>Updated:</label>
+            <input type="text" disabled value="{{user.updated_at.toString()}}"/>
         </div>
-    </form>
+    </div>
+</div>
+
+<div class="flex-container">
+    <div *ngFor="let usr of users">
+        <div>
+            <button class="btn btn-primary" (click)="getUserPosts(usr.id)">view posts</button>
+            <div>
+                <h3>User: {{usr.id}}</h3>
+                <div>
+                    <label>Name:</label>
+                    <input type="text" disabled value="{{usr.name}}"/>
+                </div>
+                <div>
+                    <label>Email:</label>
+                    <input type="text" disabled value="{{usr.email}}"/>
+                </div>
+                <div>
+                    <label>Gender:</label>
+                    <input type="text" disabled value="{{usr.gender}}"/>
+                </div>
+                <div>
+                    <label>Status:</label>
+                    <input type="text" disabled value="{{usr.status}}"/>
+                </div>
+                <div>
+                    <label>Created:</label>
+                    <input type="text" disabled value="{{usr.created_at.toString()}}"/>
+                </div>
+                <div>
+                    <label>Updated:</label>
+                    <input type="text" disabled value="{{usr.updated_at.toString()}}"/>
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<div class="btn-group">
+    <button class="btn btn-success" (click)="prev()">Prev</button><label>{{index}}</label><button class="btn btn-success" (click)="next()">Next</button>
 </div>

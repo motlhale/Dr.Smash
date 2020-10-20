@@ -2,6 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgbModal,ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
+import { RegisterPg2Component } from '../register-pg2/register-pg2.component';
+import { RegisterPg3Component } from '../register-pg3/register-pg3.component';
 import { userService } from '../../services/userService';
 import { Router } from '@angular/router';
 
@@ -18,7 +20,16 @@ export class HomeComponent implements OnInit {
   @ViewChild(RegisterComponent,{static:false})
   private register:RegisterComponent
 
+  @ViewChild(RegisterPg2Component, {static: false})
+  private regPg2:RegisterPg2Component
+
+  @ViewChild(RegisterPg3Component,{static: false})
+  private regPg3: RegisterPg3Component
+
   loading = false;
+  step1 = false;
+  step2 = false;
+  step3 = true;
   closeResult:string;
 
   constructor(
@@ -46,6 +57,21 @@ export class HomeComponent implements OnInit {
       return 'by clicking on the backdrop';
     }else{
       return `with: ${reason}`;
+    }
+  }
+
+  nextFunction(data){
+    if(data == "/posts"){
+      this.step2 = true;
+      this.step3 = false;
+    }
+    if(data == "/pg3"){
+      this.step2 = false;
+      this.step1 = true;
+    }
+    if(data == "/pg1"){
+      this.step3 = true;
+      this.step2 = false;
     }
   }
 

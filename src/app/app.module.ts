@@ -15,6 +15,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { PostsComponent } from './components/posts/posts.component';
+import { RegisterPg2Component } from './components/register-pg2/register-pg2.component';
+import { RegisterPg3Component } from './components/register-pg3/register-pg3.component';
 
 
 @NgModule({
@@ -24,7 +26,9 @@ import { PostsComponent } from './components/posts/posts.component';
     RegisterComponent,
     HomeComponent,
     MenuComponent,
-    PostsComponent
+    PostsComponent,
+    RegisterPg2Component,
+    RegisterPg3Component
   ],
   imports: [
     BrowserModule,

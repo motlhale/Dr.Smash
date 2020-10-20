@@ -1,7 +1,7 @@
 <div class="myContainer">
     <h1>Welcome to my container</h1>
     <h3>Begin...</h3>
-    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very like for the process to stop... doing what it's doing so what can the transistor do well...it can build a bridge</p>
+    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very much like for the process to stop... doing what it's . i'd very much like that alot. So what can the transistor do? Well...it can build a bridge</p>
 
     <div>
         <button class="btn btn-primary" (click)="open(myModal)">Begin</button>
@@ -32,7 +32,9 @@
         </button>
     </div>
     <div class="modal-body">
-        <app-register (registerFunction)="registerFunction()"></app-register>
+        <app-register *ngIf="step1" (registerFunction)="registerFunction($event)"></app-register>
+        <app-register-pg2 *ngIf="step2" (nextFunction)="nextFunction($event)"></app-register-pg2>
+        <app-register-pg3 *ngIf="step3" (nextFunction)="nextFunction($event)"></app-register-pg3>
     </div>
     <div class="modal-footer">
         <p>brought to you by Keoagile Motlhale</p>

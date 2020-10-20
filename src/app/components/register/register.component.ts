@@ -17,7 +17,6 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     //this.router.navigate(['/pg2']);
-    //
     this.registerFunction.emit("registerd");
   }
 }

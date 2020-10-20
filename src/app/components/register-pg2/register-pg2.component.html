@@ -1,10 +1,12 @@
-<p>register-pg2 works!</p>
-<div>
-    <button [disabled]="loading" type="button" class="btn btn-primary" (click)="onPrev()">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Prev
-    </button>
-
-    <button [disabled]="loading" type="button" class="btn btn-primary" (click)="onNext()">
-        <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Next
-    </button>
+<div class="myContainer">
+    <p>register-pg2 works!</p>
+    <div>
+        <button [disabled]="loading" type="button" class="btn btn-primary" (click)="onPrev()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Prev
+        </button>
+    
+        <button [disabled]="loading" type="button" class="btn btn-primary" (click)="onNext()">
+            <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Next
+        </button>
+    </div>
 </div>

@@ -13,6 +13,8 @@ export class MenuComponent implements OnInit {
   user:any;
   users:any;
   index:number;
+  isLoggedIn:boolean = false;
+
   //userForm:FormGroup;
   constructor(
     private userService:userService,
@@ -23,6 +25,9 @@ export class MenuComponent implements OnInit {
   ngOnInit(): void {
     this.index = 1;
     this.user = JSON.parse(localStorage.getItem("user"));
+    if(this.user != null || this.user != undefined){
+      this.isLoggedIn = true;
+    }
     this.userService.getUsers(this.index).subscribe(
       (data) =>{
         this.users = data.data

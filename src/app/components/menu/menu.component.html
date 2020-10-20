@@ -1,5 +1,5 @@
 <div>
-    <div class="container">
+    <div *ngIf="isLoggedIn" class="container">
         <h2>Logged in User</h2>
         <div>
             <label>Name:</label>
@@ -28,8 +28,8 @@
     </div>
 </div>
 
-<div class="flex-container">
-    <div *ngFor="let usr of users">
+<div >
+    <div class="flex-container" *ngFor="let usr of users">
         <div>
             <button class="btn btn-primary" (click)="getUserPosts(usr.id)">view posts</button>
             <div>

@@ -1,7 +1,16 @@
 <div class="myContainer">
     <h1>Welcome to my container</h1>
     <h3>Begin...</h3>
-    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very much like for the process to stop... doing what it's . i'd very much like that alot. So what can the transistor do? Well...it can build a bridge</p>
+    <p>Welcome, welcome, well...come in. Let's begin, I'm calling for a truce. See I'd very much like for the process to stop... doing what it's doing. I'd very much like that alot. So what can the transistor do? Well...it can build a bridge</p>
+
+    <div  class="flex-container">
+        <div *ngFor="let cal of fakecalender" >
+            <div style="width: 250px;">
+                <label>{{cal.day}} {{cal.month}} {{cal.year}}</label> <br/>
+                <p *ngFor="let task of cal.tasks"> {{task}}</p><br/>
+            </div>
+        </div>
+    </div>
 
     <div>
         <button class="btn btn-primary" (click)="open(myModal)">Begin</button>

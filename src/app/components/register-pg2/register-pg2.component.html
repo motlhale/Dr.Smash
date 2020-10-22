@@ -1,5 +1,34 @@
 <div class="myContainer">
-    <p>register-pg2 works!</p>
+    <p>The first user is below</p>
+    <div>
+        <div *ngIf="isLoaded else empty">
+            <h3>User: {{usr.id}}</h3>
+            <div>
+                <label>Name:</label>
+                <input type="text" disabled value="{{usr.name}}"/>
+            </div>
+            <div>
+                <label>Email:</label>
+                <input type="text" disabled value="{{usr.email}}"/>
+            </div>
+            <div>
+                <label>Gender:</label>
+                <input type="text" disabled value="{{usr.gender}}"/>
+            </div>
+            <div>
+                <label>Status:</label>
+                <input type="text" disabled value="{{usr.status}}"/>
+            </div>
+            <div>
+                <label>Created:</label>
+                <input type="text" disabled value="{{usr.created_at}}"/>
+            </div>
+            <div>
+                <label>Updated:</label>
+                <input type="text" disabled value="{{usr.updated_at}}"/>
+            </div>
+        </div>
+    </div>
     <div>
         <button [disabled]="loading" type="button" class="btn btn-primary" (click)="onPrev()">
             <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Prev
@@ -10,3 +39,9 @@
         </button>
     </div>
 </div>
+
+<ng-template #empty>
+    <div>
+        <p>There is no user to load, please reload the page</p>
+    </div>
+</ng-template>

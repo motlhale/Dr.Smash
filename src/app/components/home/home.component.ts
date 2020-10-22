@@ -31,6 +31,7 @@ export class HomeComponent implements OnInit {
   step2 = false;
   step3 = true;
   closeResult:string;
+  fakecalender =[];
 
   constructor(
     private modalService: NgbModal,
@@ -39,6 +40,28 @@ export class HomeComponent implements OnInit {
     }
 
   ngOnInit(): void {
+    this.generateCalenderView();
+  }
+
+  generateCalenderView(){
+    var s = new Date();
+    for (let index = -2; index < 3 ; index ++) {
+      var tasks = [];
+      var myRandom = Math.floor(Math.random()*(7-3)+2)
+
+      for(let i = 1; i <+ myRandom; i++){
+        tasks.push(`task ${i}, scheduled for today`)
+      }
+
+      var date = {
+        'day' : s.getDate() + index,
+        'month': s.toLocaleDateString('en-us',{month:'long'}),
+        'year': s.getFullYear(),
+        'tasks': tasks 
+      };
+
+      this.fakecalender.push(date);
+    }
   }
 
   open(content){

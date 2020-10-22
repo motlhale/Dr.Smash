@@ -1,8 +1,31 @@
 .myContainer {
     width: 100%;
-    height: 97%;
+    height: 100%;
     margin: 0;
     border: 5px solid #696969;
+}
+
+.flex-container {
+    display: flex;
+    background-color: dodgerblue;
+    overflow: scroll;
+}
+
+.flex-container > div {
+    background-color: #c0c0c0;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+.scrollButton{
+    background-color: #696969;
+
+}
+
+.scrollButton > button{
+    margin-top: 300%;
 }
 
 h1 { 

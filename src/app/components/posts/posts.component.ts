@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { postService } from '../../services/postService'
+import { postService } from '../../services/postService';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-posts',
@@ -11,7 +12,9 @@ export class PostsComponent implements OnInit {
   index:number;
   posts:any;
 
-  constructor(private postService: postService) { }
+  constructor(
+    private postService: postService,
+    private router: Router) { }
 
   ngOnInit(): void {
     this.index = 1;
@@ -34,5 +37,9 @@ export class PostsComponent implements OnInit {
 
   next(){
     this.index++;
+  }
+
+  onHome(){
+    this.router.navigate(["/"]);
   }
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Router } from '@angular/router';
+import { userService } from 'src/app/services/userService';
 
 @Component({
   selector: 'app-register-pg2',
@@ -9,13 +10,22 @@ import { Router } from '@angular/router';
 export class RegisterPg2Component implements OnInit {
 
   loading = false;
+  isLoaded = false;
+  usr:any;
 
   @Output() nextFunction: EventEmitter<any> = new EventEmitter()
   constructor(
-    private router: Router
+    private router: Router,
+    private userService: userService
   ) { }
 
   ngOnInit(): void {
+    this.usr = JSON.parse(localStorage.getItem("user"));
+    console.log(this.usr);
+    
+    if(this.usr){
+      this.isLoaded = true;
+    }
   }
 
   onNext(){

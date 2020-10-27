@@ -8,7 +8,15 @@
 .flex-container {
     display: flex;
     background-color: dodgerblue;
-    overflow: scroll;
+    height: 30%;
+    overflow: auto;
+}
+
+.flex-container-new{
+    display: flex;
+    background-color: black;
+    height: 30%;
+    overflow: auto;
 }
 
 .flex-container > div {
@@ -19,14 +27,29 @@
     width: 50%;
 }
 
-.scrollButton{
+.flex-container-new > div {
+    background-color: #c0c0c0;
+    padding: 30px;
+    margin: 20px;
+    border-radius: 10px;
+    width: 50%;
+}
+
+::-webkit-scrollbar{
+    width: 2px;
+    height: 10px;
+}
+
+::-webkit-scrollbar-track{
+    opacity: 0;
+}
+
+::-webkit-scrollbar-thumb{
+    width: 10px;
+    border-radius: 15px;
     background-color: #696969;
-
 }
 
-.scrollButton > button{
-    margin-top: 300%;
-}
 
 h1 { 
     font-family: "Bodoni MT", Didot, "Didot LT STD", "Hoefler Text", Garamond, "Times New Roman", serif; 

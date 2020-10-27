@@ -2,12 +2,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule,HTTP_INTERCEPTORS } from '@angular/common/http';
+import {  } from '@microsoft/signalr'
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { userService } from './services/userService';
 import { postService } from './services/postService';
+import { chatService } from './services/chatService';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -39,7 +41,8 @@ import { RegisterPg3Component } from './components/register-pg3/register-pg3.com
   ],
   providers: [
     userService,
-    postService
+    postService,
+    chatService
   ],
   bootstrap: [AppComponent]
 })

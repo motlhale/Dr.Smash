@@ -4,7 +4,6 @@ import { LoginComponent } from '../login/login.component';
 import { RegisterComponent } from '../register/register.component';
 import { RegisterPg2Component } from '../register-pg2/register-pg2.component';
 import { RegisterPg3Component } from '../register-pg3/register-pg3.component';
-import { userService } from '../../services/userService';
 import { Router } from '@angular/router';
 
 @Component({
@@ -30,22 +29,33 @@ export class HomeComponent implements OnInit {
   step1 = false;
   step2 = false;
   step3 = true;
+  theme = "flex-container";
+  text:string ="Hi";
   closeResult:string;
   fakecalender =[];
 
   constructor(
     private modalService: NgbModal,
     private router: Router) { 
-      
     }
 
   ngOnInit(): void {
     this.generateCalenderView();
   }
 
+  changeText(){
+    if(this.text == "Hi"){
+      this.text = "Changed";
+      this.theme = "flex-container-new";
+    }
+    else{
+      this.text = "Hi";
+      this.theme = "flex-container";
+    }
+  }
   generateCalenderView(){
     var s = new Date();
-    for (let index = -2; index < 3 ; index ++) {
+    for (let index = -12; index < 15 ; index ++) {
       var tasks = [];
       var myRandom = Math.floor(Math.random()*(7-3)+2)
 

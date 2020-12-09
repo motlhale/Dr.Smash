@@ -4,14 +4,16 @@ import { map } from 'rxjs/operators';
 import { AppSettings } from '../helper/appSettings';
 import * as signalR from '@microsoft/signalr';
 import { Observable, Subject } from 'rxjs';
+import { MessageDto } from '../models/messageDto';
 
 @Injectable()
 export class chatService {
-    private connection:any = new signalR.HubConnectionBuilder().withUrl(`${AppSettings.ChatURL}/chatsocket`)
+    private connection:any = new signalR.HubConnectionBuilder()
+    .withUrl(`${AppSettings.ChatURL}/chatsocket`)
     .configureLogging(signalR.LogLevel.Error)
     .build();
 
-    private sharedObj = new Subject<any>()
+    private sharedObj = new Subject<MessageDto>()
 
     constructor(private httpClient:HttpClient){
         this.connection.onclose( async () => {
@@ -29,19 +31,22 @@ export class chatService {
           console.log(err);
           setTimeout(() => this.start(), 5000);
         } 
-      }
+    }
 
-      private mapRecivedMessage(user, message){
-          var obj ={
-              'userTo': user,
-              'message' : message
-          };
+    private mapRecivedMessage(user, message){
+          var obj = new MessageDto();
+          obj.UserTo = user;
+          obj.Message = message;
 
           this.sharedObj.next(obj);
-      }
+    }
 
     sendMessage(message){
         this.httpClient.post<any>(`${AppSettings.ChatURL}/api/send`,message)
         .pipe( map( (response) =>{return response})) 
+    }
+
+    retrieveMappedMessage(): Observable<any>{
+        return this.sharedObj.asObservable();
     }
 }

@@ -19,6 +19,7 @@ import { MenuComponent } from './components/menu/menu.component';
 import { PostsComponent } from './components/posts/posts.component';
 import { RegisterPg2Component } from './components/register-pg2/register-pg2.component';
 import { RegisterPg3Component } from './components/register-pg3/register-pg3.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { RegisterPg3Component } from './components/register-pg3/register-pg3.com
     MenuComponent,
     PostsComponent,
     RegisterPg2Component,
-    RegisterPg3Component
+    RegisterPg3Component,
+    ChatComponent
   ],
   imports: [
     BrowserModule,
